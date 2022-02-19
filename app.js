@@ -2,7 +2,9 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 const morgan = require('morgan');
-const formRoutes = require('./routes/api/formservice'); 
+
+const formRoutes = require('./api/routes/formservice'); 
+const userRoutes = require('./api/routes/users');
 
 mongoose.connect('mongodb+srv://nitesh-user-1:'+ process.env.MONGO_ATLAS_PW +'@cluster0.dlsws.mongodb.net/myFirstDatabase?retryWrites=true&w=majority');
 // mongosh "mongodb+srv://cluster0.dlsws.mongodb.net/myFirstDatabase" --username nitesh-user-1
@@ -21,6 +23,7 @@ app.use((req,res,next) => {
 });
 
 app.use('/form',formRoutes);
+app.use('/user',userRoutes);
 
 app.use(function(req, res, next) {
     const error = new Error('Not found');

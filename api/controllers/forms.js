@@ -1,9 +1,7 @@
-const express = require("express");
-const router = express.Router();
 const mongoose = require("mongoose");
-const Form = require("../../models/form");
+const Form = require("../models/form");
 
-router.get("/", (req, res, next) => {
+exports.get_all_form = (req, res, next) => {
   Form.find()
     .exec()
     .then((docs) => {
@@ -16,6 +14,7 @@ router.get("/", (req, res, next) => {
             address: doc.address,
             email: doc.email,
             phoneNumber: doc.phoneNumber,
+            service: doc.service,
             request: {
               type: "GET",
               url: "http://localhost:6060/form/" + doc._id,
@@ -30,9 +29,9 @@ router.get("/", (req, res, next) => {
         message_2: "something went wrong",
       });
     });
-});
+};
 
-router.post("/add", (req, res, next) => {
+exports.create_form = (req, res, next) => {
   const form = new Form({
     _id: mongoose.Types.ObjectId(),
     name: req.body.name,
@@ -57,9 +56,9 @@ router.post("/add", (req, res, next) => {
         message: "error occurred",
       });
     });
-});
+};
 
-router.get("/:formId", (req, res, next) => {
+exports.get_form = (req, res, next) => {
   const id = req.params.formId;
   Form.findById(id)
     .exec()
@@ -77,9 +76,9 @@ router.get("/:formId", (req, res, next) => {
         message: err.message,
       });
     });
-});
+};
 
-router.delete("/:formId", (req, res, next) => {
+exports.delete_form = (req, res, next) => {
   const id = req.params.formId;
   Form.remove({ _id: id })
     .exec()
@@ -92,9 +91,9 @@ router.delete("/:formId", (req, res, next) => {
         error: err,
       });
     });
-});
+};
 
-router.patch("/:formId", (req, res, next) => {
+exports.update_form = (req, res, next) => {
   const id = req.params.formId;
   console.log(res.body, "check patch");
   // const updateOps = {};
@@ -119,5 +118,4 @@ router.patch("/:formId", (req, res, next) => {
     .catch((err) => {
       res.status(500).json({ error: err });
     });
-});
-module.exports = router;
+};
