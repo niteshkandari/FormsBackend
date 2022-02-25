@@ -7,7 +7,6 @@ const formRoutes = require('./api/routes/formservice');
 const userRoutes = require('./api/routes/users');
 
 mongoose.connect('mongodb+srv://nitesh-user-1:'+ process.env.MONGO_ATLAS_PW +'@cluster0.dlsws.mongodb.net/myFirstDatabase?retryWrites=true&w=majority');
-// mongosh "mongodb+srv://cluster0.dlsws.mongodb.net/myFirstDatabase" --username nitesh-user-1
 app.use(morgan('dev'));
 app.use(express.urlencoded({extended:false}));
 app.use(express.json());
