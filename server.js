@@ -3,7 +3,7 @@ const http = require("http");
 const app = require("./app");
 const cors = require("cors");
 
-app.user(cors({origin:"*"}))
+app.use(cors({origin:"*"}))
 
 const port = process.env.PORT ;
 
