@@ -8,7 +8,8 @@ const formRoutes = require('./api/routes/formservice');
 const userRoutes = require('./api/routes/users');
 
 mongoose.connect('mongodb+srv://nitesh-user-1:'+ process.env.MONGO_ATLAS_PW +'@cluster0.dlsws.mongodb.net/myFirstDatabase?retryWrites=true&w=majority');
-app.use(cors({origin:"*"}));
+
+app.use(cors({origin:"http://localhost:3000"}));
 app.use(morgan('dev'));
 app.use(express.urlencoded({extended:false}));
 app.use(express.json());
