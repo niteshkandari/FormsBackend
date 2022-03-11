@@ -13,7 +13,7 @@ mongoose.connect(
     "@cluster0.dlsws.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
 );
 
-app.use(cors({ origin: "*" }));
+app.use(cors({ origin: "*" ,method: ['GET', 'POST','PUT','DELETE','PATCH']}));
 app.use(morgan("dev"));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
