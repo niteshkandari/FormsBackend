@@ -9,11 +9,11 @@ const userRoutes = require('./api/routes/users');
 
 mongoose.connect('mongodb+srv://nitesh-user-1:'+ process.env.MONGO_ATLAS_PW +'@cluster0.dlsws.mongodb.net/myFirstDatabase?retryWrites=true&w=majority');
 
-app.use(cors({origin:"http://localhost:3000"}));
 app.use(morgan('dev'));
 app.use(express.urlencoded({extended:false}));
 app.use(express.json());
 
+app.use(cors({origin:"*"}));
 app.use((req,res,next) => {
     res.header('Access-Control-Allow-Origin', '*'); 
     res.header('Access-Control-Allow-Headers','Origin, X-Requested-With, Content-Type, Accept,Authorization')
