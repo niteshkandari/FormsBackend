@@ -31,7 +31,7 @@ app.use((req, res, next) => {
     next();
   });
 
-app.use(cors({origin:'*',methods:['PUT','POST','PATCH','DELETE','GET']})); 
+// app.use(cors({origin:'*',methods:['PUT','POST','PATCH','DELETE','GET']})); 
   
 app.use("/form", formRoutes);
 app.use("/user", userRoutes);
