@@ -17,7 +17,7 @@ app.use(morgan("dev"));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-app.options(cors({origin:'*',methods:['PUT','POST','PATCH','DELETE','GET']})); 
+app.use(cors({origin:'*',methods:['PUT','POST','PATCH','DELETE','GET']})); 
 
 // app.use((req, res, next) => {
 //   res.header("Access-Control-Allow-Origin", "*");
