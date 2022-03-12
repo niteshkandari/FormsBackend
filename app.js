@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const morgan = require("morgan");
+const cors = require("cors");
 
 const formRoutes = require("./api/routes/formservice");
 const userRoutes = require("./api/routes/users");
@@ -15,6 +16,13 @@ mongoose.connect(
 app.use(morgan("dev"));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+
+app.use(cors({
+  "origin": "*",
+  "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
+  "preflightContinue": true,
+  "optionsSuccessStatus": 204
+}))
 
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
